@@ -1,8 +1,6 @@
 #  <div align="center"> ![logo white](https://github.com/jobdfhjfghfg/happymallSpring/assets/155034269/795b48fe-3d54-4991-b15a-7367b6e92a5f) &nbsp; HappyMall</div>
-
-
-
-One Paragraph of project description goes here / 프로젝트의 전반적인 내용에 대한 요약을 여기에 적습니다
+<br>
+<div align="center"><a href="43.202.12.236:8081">HappyMall 바로가기</a></div>
 
 ## Getting Started / 어떻게 시작하나요?
 
