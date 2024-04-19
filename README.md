@@ -3,8 +3,8 @@
 
 ### <div align="center"> [HappyMall 바로가기](http://43.202.12.236:8081)</div>
 <br>
-<div align="center">testId : admin <br>
-                    password : test123</div>
+<div align="center">testId : `admin` <br>
+                    password : `test123` </div>
 <br>
 
 <details>
