@@ -1,6 +1,6 @@
-# <div align="center"> HappyMall</div>
+# ![logo white](https://github.com/jobdfhjfghfg/happymallSpring/assets/155034269/795b48fe-3d54-4991-b15a-7367b6e92a5f) &nbsp; <div align="center"> HappyMall</div>
 
-![로고](https://github.com/jobdfhjfghfg/happymallSpring/assets/155034269/fd93c436-dc53-4388-89db-0a0ca1832be2)
+
 
 One Paragraph of project description goes here / 프로젝트의 전반적인 내용에 대한 요약을 여기에 적습니다
 
