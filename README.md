@@ -46,13 +46,12 @@
 | 1.22 ~ 1.24 <br><hr> 1.25 ~ 1.29 <br><hr> 1.30 ~ 2.8 <br><hr> 3.25 ~ 4.15 <br><hr> 4.16 ~ 4.19 | 프로젝트 기획 <br><hr> 와이어 프레임 및 기능 구상 <br><hr> 웹 페이지 디자인 <br><hr> 기능 구현 <br><hr> 버그 수정|
 </div>
 
-```
-예시
-```
+<br>
+<br>
 
-## Deployment / 배포
+## <span id="feature">4. 기능 구현</span>
 
-Add additional notes about how to deploy this on a live system / 라이브 시스템을 배포하는 방법
+
 
 ## Built With / 누구랑 만들었나요?
 
