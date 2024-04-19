@@ -6,7 +6,7 @@
 <div align="center">testId : admin <br>
                     password : test123</div>
 
-이 곳에서 설치에 관련된 이야기를 해주시면 좋습니다.
+<summary>목차</summary>
 
 ### Prerequisites / 선행 조건
 
