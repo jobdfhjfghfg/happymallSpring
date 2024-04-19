@@ -1,6 +1,6 @@
-#  <div align="center"> ![logo white](https://github.com/jobdfhjfghfg/happymallSpring/assets/155034269/795b48fe-3d54-4991-b15a-7367b6e92a5f) &nbsp; HappyMall</div>
+#  <div align="center"> ![logo white](https://github.com/jobdfhjfghfg/happymallSpring/assets/155034269/795b48fe-3d54-4991-b15a-7367b6e92a5f) &nbsp; HappyMall
 <br>
-<div align="center"><a href="43.202.12.236:8081">HappyMall 바로가기</a></div>
+<b>HappyMall 바로가기(43.202.12.236:8081)</b></div>
 
 ## Getting Started / 어떻게 시작하나요?
 
