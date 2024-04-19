@@ -5,36 +5,35 @@
 <br>
 <div align="center">testId : admin <br>
                     password : test123</div>
+<br>
 
+<details>
 <summary>목차</summary>
 
-### Prerequisites / 선행 조건
+1. [프로젝트 소개](#intro)
+2. [기술 및 개발 환경](#dex)
+3. [개발 일정](#schedule)
+4. [구현 기능](#feature)
+5. [메인 코드](#main)
 
-아래 사항들이 설치가 되어있어야합니다.
+</details>
+<br>
 
-```
-예시
-```
+## <span id="intro">1. 프로젝트 소개</span>
+<b> HappyMall은 애완동물 쇼핑몰로 애견인들에게 필요한 상품들을 제공하는 홈페이지입니다. </b>
 
-### Installing / 설치
+<br>
+<br>
 
-아래 사항들로 현 프로젝트에 관한 모듈들을 설치할 수 있습니다.
+## <span id="dex">2. 기술 및 개발 환경</span>
 
-```
-예시
-```
+<div align="center">
 
-## Running the tests / 테스트의 실행
+| FrontEnd | BackEnd | Design | 협업방식 | 컨벤션 |
+| :----: | :----: | :----: | :----: | :----: |
+|  <img src="https://img.shields.io/badge/bootstrap-#7952B3?style=flat-square&logo=styledcomponents&logoColor=white"> <img src="https://img.shields.io/badge/Recoil-3578E5.svg?style=flat-square&logo=Recoil&logoColor=white"> <img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=flat-square&logo=JavaScript&logoColor=black"> | 제공된 API | <img src="https://img.shields.io/badge/figma-FBCEB1?style=flat-square&logo=figma&logoColor=white"> | <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=Git&logoColor=white"> <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"> <img src="https://img.shields.io/badge/Notion-000000.svg?style=flat-square&logo=Notion&logoColor=white"> <img src="https://img.shields.io/badge/Discord-5865F2?style=flat-square&logo=Discord&logoColor=white"> | <img src="https://img.shields.io/badge/Prettier-F7B93E.svg?style=flat-square&logo=Prettier&logoColor=black"> <img src="https://img.shields.io/badge/ESLint-4B32C3.svg?style=flat-square&logo=ESLint&logoColor=white"> |
 
-어떻게 테스트가 이 시스템에서 돌아가는지에 대한 설명을 합니다
-
-### 테스트는 이런 식으로 동작합니다
-
-왜 이렇게 동작하는지, 설명합니다
-
-```
-예시
-```
+</div>
 
 ### 테스트는 이런 식으로 작성하시면 됩니다
 
