@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/header :: header">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HappyMall - 로그인</title>
+</head>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+  Kakao.init('1972adff6bc7248d233ab5d0610e25a4');
+
+  function kakaoLogin() {
+    Kakao.Auth.login({
+      success: function (response) {
+        Kakao.API.request({
+          url: '/v2/user/me',
+          success: function (response) {
+            window.location.href = "/";
+          },
+          fail: function (error) {
+            console.log(error)
+            $('#loginModal').modal('show');
+          },
+        })
+      },
+      fail: function (error) {
+        console.log(error)
+      },
+    })
+  }
+
+
+</script>
+<body>
+<div th:insert="~{fragments/bodyHeader :: bodyHeader}"></div>
+<!-- 로그인 -->
+
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel"><i class="bi bi-exclamation-octagon text-danger fs-2"></i> 로그인 실패</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        로그인이 실패했습니다.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="pt-5 mt-5">
+    <div class="container">
+        <div class="row justify-content-center align-items-center vh-100">
+          <div class="col-md-6">
+            <div class="card shadow bg-custom-color-login">
+              <div class="card-body p-4">
+                <h5 class="card-title text-center mb-4">로그인</h5>
+                <form th:object="${loginForm}" method="post">
+                  <div th:if="${#fields.hasGlobalErrors()}">
+                    <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메시지</p>
+                  </div>
+                  <div class="mb-3">
+                    <label th:for="loginId" class="form-label">아이디</label>
+                    <input type="text" class="form-control" th:field="*{loginId}" placeholder="아이디를 입력하세요" autofocus>
+                  </div>
+                  <p th:if="${#fields.hasErrors('loginId')}" th:errors="*{loginId}" class="fieldError"></p>
+                  <div class="mb-3">
+                    <label th:for="password" class="form-label">비밀번호</label>
+                    <input type="password" class="form-control" th:field="*{password}" placeholder="비밀번호를 입력하세요">
+                  </div>
+                  <p th:if="${#fields.hasErrors('loginId')}" th:errors="*{password}" class="fieldError"></p>
+                  <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">아이디 기억하기</label>
+                  </div>
+                  <button type="submit" class="btn bg-custom-color w-100 my-3 login-select">로그인</button>
+                  <a href="#" class="btn bg-custom-color w-100 my-3 login-select">아이디/비밀번호 찾기</a>
+                  <a href="signUp" class="btn bg-custom-color w-100 my-3 login-select">회원가입</a>
+                  
+                  <div class="row pt-3 text-center">
+                    <h5 class="pb-3">SNS 소셜 간편 로그인</h5>
+                    <div class="col-4">
+                        <a href="javascript:void(0)" onclick="kakaoLogin()"><img src="./image/sns아이콘/카톡 아이콘.png" alt="카톡" class="img-fluid rounded-circle"></a>
+                    </div>
+                    <div class="col-4">
+                        <a href="#"><img src="./image/sns아이콘/구글.png" alt="구글" class="img-fluid rounded-circle"></a>
+                    </div>
+                    <div class="col-4">
+                        <a href="#"><img src="./image/sns아이콘/네이버.png" alt="네이버" class="img-fluid rounded-circle"></a>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
+<div th:insert="~{fragments/footer :: footer}"></div>
+</body>
+</html>

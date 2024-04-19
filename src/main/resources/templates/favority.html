@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/header :: header}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HappyMall</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<div th:insert="~{fragments/bodyHeader :: bodyHeader}"></div>
+  <!-- 배너 라인(캐러셀) -->
+  <div id="bannerCarousel" class="carousel slide carousel-fade pt-5" data-bs-ride="carousel" data-bs-interval="3000">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="./image/배너/홍보배너2.jpg" class="d-block w-100 rounded-3" alt="배너">
+      </div>
+      <div class="carousel-item">
+        <img src="./image/배너/홍보배너1.jpg" class="d-block w-100 rounded-3" alt="배너">
+      </div>
+      <!-- 추가적인 배너 이미지들을 필요에 따라 추가예정 -->
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+<!-- 배너 라인(캐러셀) 끝 -->
+
+<!-- 홍보배너1 -->
+<section class="container pt-5">
+  <div class="row">
+    <div class="col-md-6 mb-4 overflow-hidden">
+      <a href="#"><img src="./image/디자인/디자인(수정).png" alt="홍보배너1" class="img-fluid bannerPr"></a>
+    </div>
+    <div class="col-md-6 mb-4 overflow-hidden">
+      <a href="#"><img src="./image/디자인/디자인2(수정).png" alt="홍보배너2" class="img-fluid bannerPr"></a>
+    </div>
+  </div>
+</section>
+
+
+  <!-- 자주찾는 상품 -->
+  <section class="container py-5 text-center">
+    <a href="a-favority-product.html" class="text-decoration-none product product-column">자주 찾는 상품</a>
+    <div id="productCarousel1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="row carousel">
+            <div class="col-md-3 col-6 py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/간식(강아지)/간식2.jpg" alt="간식" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">하루조이</h5>
+                        <p class="fw-bold fs-5 product-name">5,600원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <!-- 나머지 상품도 동일하게 추가 -->
+            <div class="col-md-3 col-6 py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/사료(강아지)/사료2.jpg" alt="사료" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">To pet(사료)</h5>
+                        <p class="fw-bold fs-5 product-name">27,500원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-3 col-4 py-5 d-md-block d-none">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/간식(강아지)/간식3.jpg" alt="간식" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">ALLIVE</h5>
+                        <p class="fw-bold fs-5 product-name">24,300원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-3 d-none d-md-block py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/강아지 목욕/강아지 목욕용품4.jpg" alt="목욕용품" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">Pet Towel</h5>
+                        <p class="fw-bold fs-5 product-name">3,200원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 다음 carousel-item 추가 -->
+        <div class="carousel-item">
+          <div class="row carousel">
+            <div class="col-md-3 col-6 py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/간식(강아지)/간식4.jpg" alt="간식" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">한입쿠키</h5>
+                        <p class="fw-bold fs-5 product-name">10,500원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <!-- 나머지 상품도 동일하게 추가 -->
+            <div class="col-md-3 col-6 py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/간식(고양이)/고양이간식3.jpg" alt="간식" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">쮸루쮸루</h5>
+                        <p class="fw-bold fs-5 product-name">6,700원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-3 d-none d-md-block col-4 py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/사료(강아지)/사료2.jpg" alt="간식" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">Cat Stick</h5>
+                        <p class="fw-bold fs-5 product-name">5,200원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-3 d-none d-md-block py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/강아지 건강식품/강아지 건강식품2.jpg" alt="건강" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">네이처펫</h5>
+                        <p class="fw-bold fs-5 product-name">29,500원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 이전 버튼 -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel1" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+
+      <!-- 다음 버튼 -->
+      <button class="carousel-control-next" type="button" data-bs-target="#productCarousel1" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </section>
+
+
+  <!-- 한정특가  -->
+  <section class="container py-5 text-center">
+    <a href="limited-special.html" class="text-decoration-none product product-column">한정특가</a>
+    <div id="productCarousel2" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="row carousel">
+            <div class="col-md-3 col-6 py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/강아지 건강식품/강아지 건강식품3.jpg" alt="건강" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">Stool Repel</h5>
+                        <p class="fw-bold fs-5 product-name">17,200원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <!-- 나머지 상품도 동일하게 추가 -->
+            <div class="col-md-3 col-6 py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/강아지 건강식품/강아지 건강식품4.jpg" alt="건강" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">건강백서</h5>
+                        <p class="fw-bold fs-5 product-name">17,500원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-3 d-none d-md-block col-4 py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/강아지 목욕/강아지 목욕용품1.jpg" alt="목욕" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">목욕 솔</h5>
+                        <p class="fw-bold fs-5 product-name">3,200원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-3 d-none d-md-block py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/강아지 목욕/강아지 목욕용품3.jpg" alt="목욕용품" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">강아지 샴푸</h5>
+                        <p class="fw-bold fs-5 product-name">9,200원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 다음 carousel-item 추가 -->
+        <div class="carousel-item">
+          <div class="row carousel">
+            <div class="col-md-3 col-6 py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/강아지 하우스/강아지 하우스1.jpg" alt="하우스" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">강아지 하우스</h5>
+                        <p class="fw-bold fs-5 product-name">31,500원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <!-- 나머지 상품도 동일하게 추가 -->
+            <div class="col-md-3 col-6 py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/강아지 하우스/강아지 하우스3.jpg" alt="간식" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">원목 하우스</h5>
+                        <p class="fw-bold fs-5 product-name">41,200원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div><div class="col-md-3 d-none d-md-block col-4 py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/고양이 건강식품/고양이 건강식품1.jpg" alt="건강" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">보양대첩</h5>
+                        <p class="fw-bold fs-5 product-name">27,500원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div><div class="col-md-3 d-none d-md-block py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/고양이 건강식품/고양이 건강식품3.jpg" alt="건강" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">성장스틱 키튼</h5>
+                        <p class="fw-bold fs-5 product-name">12,500원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 이전 버튼 -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel2" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+
+      <!-- 다음 버튼 -->
+      <button class="carousel-control-next" type="button" data-bs-target="#productCarousel2" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </section>
+  <!-- 한정특가 끝 -->
+
+  <!-- 홍보배너 -->
+  <section class="container py-5">
+    <div class="row">
+      <div class="col-md-12 overflow-hidden">
+        <a href="#"><img src="./image/디자인/디자인3(수정).png" alt="홍보배너3" class="img-fluid rounded-3 bannerPr"></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 신상품 -->
+  <section class="container py-5 text-center">
+    <a href="new-product.html" class="text-decoration-none product product-column">신상품</a>
+    <div id="productCarousel3" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="row carousel">
+            <div class="col-md-3 col-6 py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/고양이 건강식품/고양이 건강식품4.jpg" alt="건강" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">Cose Queen</h5>
+                        <p class="fw-bold fs-5 product-name">29,600원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <!-- 나머지 상품도 동일하게 추가 -->
+            <div class="col-md-3 col-6 py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/고양이 목욕/고양이 목욕용품1.jpg" alt="목욕" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">Cat shampoo</h5>
+                        <p class="fw-bold fs-5 product-name">17,800원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-3 d-none d-md-block col-4 py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/고양이 목욕/고양이 목욕용품4.jpg" alt="목욕" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">고양이 욕조</h5>
+                        <p class="fw-bold fs-5 product-name">24,300원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-3 d-none d-md-block py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/고양이 목욕/고양이 목욕용품5.jpg" alt="목욕용품" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">냥빨 천</h5>
+                        <p class="fw-bold fs-5 product-name">7,200원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 다음 carousel-item 추가 -->
+        <div class="carousel-item">
+          <div class="row carousel">
+            <div class="col-md-3 col-6 py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/고양이 외출/고양이 외출용품1.jpg" alt="외출" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">고양이 외출 캡슐</h5>
+                        <p class="fw-bold fs-5 product-name">27,500원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <!-- 나머지 상품도 동일하게 추가 -->
+            <div class="col-md-3 col-6 py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/고양이 외출/고양이 외출용품2.jpg" alt="간식" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">고양이 이동장</h5>
+                        <p class="fw-bold fs-5 product-name">16,500원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div><div class="col-md-3 d-none d-md-block col-4 py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/강아지 장난감/강아지 장난감1.jpg" alt="장난감" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">고양이 낚싯대</h5>
+                        <p class="fw-bold fs-5 product-name">6,500원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div><div class="col-md-3 d-none d-md-block py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/고양이 장난감/고양이 장난감3.jpg" alt="장난감" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">고양이 레이저</h5>
+                        <p class="fw-bold fs-5 product-name">9,500원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 이전 버튼 -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel3" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+
+      <!-- 다음 버튼 -->
+      <button class="carousel-control-next" type="button" data-bs-target="#productCarousel3" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </section>
+  <!-- 신상품 끝 -->
+
+  <!-- 추천상품 -->
+  <section class="container py-5 text-center">
+  <a href="recommend-product.html" class="text-decoration-none product product-column">추천상품</a>
+  <div id="productCarousel4" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="row carousel">
+          <div class="col-md-3 col-6 py-5">
+            <div class="card bg-light shadow index-card">
+              <a href="#" class="text-decoration-none text-dark">
+                <div class="overflow-hidden">
+                  <div class="image-container">
+                    <img src="./image/고양이 장난감/고양이 장난감5.jpg" alt="간식" class="card-img-top bannerPr">
+                    <div class="image-overlay"></div>
+                    <div class="card-body index-card-body "> 
+                      <h5 class="product-name">캣타워</h5>
+                      <p class="fw-bold fs-5 product-name">39,600원</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <!-- 나머지 상품도 동일하게 추가 -->
+          <div class="col-md-3 col-6 py-5">
+            <div class="card bg-light shadow index-card">
+              <a href="#" class="text-decoration-none text-dark">
+                <div class="overflow-hidden">
+                  <div class="image-container">
+                    <img src="./image/강아지 하우스/강아지 하우스1.jpg" alt="하우스" class="card-img-top bannerPr">
+                    <div class="image-overlay"></div>
+                    <div class="card-body index-card-body "> 
+                      <h5 class="product-name">고양이 하우스</h5>
+                      <p class="fw-bold fs-5 product-name">15,500원</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-3 d-none d-md-block col-4 py-5">
+            <div class="card bg-light shadow index-card">
+              <a href="#" class="text-decoration-none text-dark">
+                <div class="overflow-hidden">
+                  <div class="image-container">
+                    <img src="./image/고양이 하우스/고양이 하우스5.jpg" alt="간식" class="card-img-top bannerPr">
+                    <div class="image-overlay"></div>
+                    <div class="card-body index-card-body "> 
+                      <h5 class="product-name">고양이 안락 하우스</h5>
+                      <p class="fw-bold fs-5 product-name">30,300원</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-3 d-none d-md-block py-5">
+            <div class="card bg-light shadow index-card">
+              <a href="#" class="text-decoration-none text-dark">
+                <div class="overflow-hidden">
+                  <div class="image-container">
+                    <img src="./image/고양이 하우스/고양이 하우스4.jpg" alt="하우스" class="card-img-top bannerPr">
+                    <div class="image-overlay"></div>
+                    <div class="card-body index-card-body "> 
+                      <h5 class="product-name">2층 하우스</h5>
+                      <p class="fw-bold fs-5 product-name">23,200원</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 다음 carousel-item 추가 -->
+      <div class="carousel-item">
+        <div class="row carousel">
+          <div class="col-md-3 col-6 py-5">
+            <div class="card bg-light shadow index-card">
+              <a href="#" class="text-decoration-none text-dark">
+                <div class="overflow-hidden">
+                  <div class="image-container">
+                    <img src="./image/사료(강아지)/사료4.png" alt="사료" class="card-img-top bannerPr">
+                    <div class="image-overlay"></div>
+                    <div class="card-body index-card-body "> 
+                      <h5 class="product-name">Inject Dog</h5>
+                      <p class="fw-bold fs-5 product-name">30,200원</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <!-- 나머지 상품도 동일하게 추가 -->
+          <div class="col-md-3 col-6 py-5">
+            <div class="card bg-light shadow index-card">
+              <a href="#" class="text-decoration-none text-dark">
+                <div class="overflow-hidden">
+                  <div class="image-container">
+                    <img src="./image/사료(강아지)/사료1.jpg" alt="사료" class="card-img-top bannerPr">
+                    <div class="image-overlay"></div>
+                    <div class="card-body index-card-body "> 
+                      <h5 class="product-name">Jindo</h5>
+                      <p class="fw-bold fs-5 product-name">28,500원</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div><div class="col-md-3 d-none d-md-block col-4 py-5">
+            <div class="card bg-light shadow index-card">
+              <a href="#" class="text-decoration-none text-dark">
+                <div class="overflow-hidden">
+                  <div class="image-container">
+                    <img src="./image/간식(강아지)/간식1.jpg" alt="간식" class="card-img-top bannerPr">
+                    <div class="image-overlay"></div>
+                    <div class="card-body index-card-body "> 
+                      <h5 class="product-name">건강한 육포</h5>
+                      <p class="fw-bold fs-5 product-name">8,500원</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div><div class="col-md-3 d-none d-md-block py-5">
+            <div class="card bg-light shadow index-card">
+              <a href="#" class="text-decoration-none text-dark">
+                <div class="overflow-hidden">
+                  <div class="image-container">
+                    <img src="./image/사료(강아지)/사료2.jpg" alt="간식" class="card-img-top bannerPr">
+                    <div class="image-overlay"></div>
+                    <div class="card-body index-card-body "> 
+                      <h5 class="product-name">To pet(사료)</h5>
+                      <p class="fw-bold fs-5 product-name">27,500원</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 이전 버튼 -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel4" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+
+    <!-- 다음 버튼 -->
+    <button class="carousel-control-next" type="button" data-bs-target="#productCarousel4" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  </section>
+
+<!-- 베스트 리뷰 -->
+  <section class="container py-5 text-center">
+    <a href="bestreview.html" class="text-decoration-none product product-column">Best Review</a>
+    <div id="productCarousel5" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="row carousel">
+            <div class="col-md-3 col-6 py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/간식(강아지)/간식2.jpg" alt="간식" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">하루조이</h5> 
+                        <p class="fw-bold fs-5 product-name">5,600원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <!-- 나머지 상품도 동일하게 추가 -->
+            <div class="col-md-3 col-6 py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/고양이 하우스/고양이 하우스4.jpg" alt="하우스" class="card-img-top bannerPr">
+                        <div class="image-overlay"></div>
+                        <div class="card-body index-card-body "> 
+                          <h5 class="product-name">2층 하우스</h5>
+                          <p class="fw-bold fs-5 product-name">23,200원</p>
+                        </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-3 d-none d-md-block col-4 py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/간식(강아지)/간식3.jpg" alt="간식" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">Cat Vely</h5>
+                        <p class="fw-bold fs-5 product-name">22,300원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-3 d-none d-md-block py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/사료(고양이)/고양이사료2.jpg" alt="사료" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">홈앤켓</h5>
+                        <p class="fw-bold fs-5 product-name">17,200원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 다음 carousel-item 추가 -->
+        <div class="carousel-item">
+          <div class="row carousel">
+            <div class="col-md-3 col-6 py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/사료(고양이)/고양이사료4.jpg" alt="사료" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">캐츠랑</h5>
+                        <p class="fw-bold fs-5 product-name">17,500원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <!-- 나머지 상품도 동일하게 추가 -->
+            <div class="col-md-3 col-6 py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/고양이 장난감/고양이 장난감5.jpg" alt="간식" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                        <div class="card-body index-card-body "> 
+                          <h5 class="product-name">캣타워</h5>
+                          <p class="fw-bold fs-5 product-name">39,600원</p>
+                        </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div><div class="col-md-3 d-none d-md-block col-4 py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/고양이 장난감/고양이 장난감4.jpg" alt="장난감" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">고양이 스프링 낚싯대</h5>
+                        <p class="fw-bold fs-5 product-name">19,200원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div><div class="col-md-3 d-none d-md-block py-5">
+              <div class="card bg-light shadow index-card">
+                <a href="#" class="text-decoration-none text-dark">
+                  <div class="overflow-hidden">
+                    <div class="image-container">
+                      <img src="./image/사료(강아지)/사료2.jpg" alt="간식" class="card-img-top bannerPr">
+                      <div class="image-overlay"></div>
+                      <div class="card-body index-card-body "> 
+                        <h5 class="product-name">To pet(사료)</h5>
+                        <p class="fw-bold fs-5 product-name">27,500원</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 이전 버튼 -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel5" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+
+      <!-- 다음 버튼 -->
+      <button class="carousel-control-next" type="button" data-bs-target="#productCarousel5" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </section>
+<!-- 베스트 리뷰 끝 -->
+
+<!-- 홍보배너 -->
+<section class="container pt-5">
+  <div class="row">
+    <div class="col-md-6 mb-4 overflow-hidden">
+      <a href="#"><img src="./image/디자인/디자인4(수정).png" alt="홍보배너4" class="img-fluid rounded-3  bannerPr"></a>
+    </div>
+    <div class="col-md-6 mb-4 overflow-hidden">
+      <a href="#"><img src="./image/디자인/디자인5.png" alt="홍보배너5" class="img-fluid rounded-3  bannerPr"></a>
+    </div>
+  </div>
+</section>
+
+<div class="py-5">
+
+</div>
+
+<!-- 고객지원 -->
+<section class="py-5 bg-service-custom-color text-dark">
+  <div class="container">
+    <div class="row">
+
+      <!-- 공지 및 문의 -->
+      <div class="col-md-4 col-sm-12 text-center"> 
+        <div class="align-items-baseline footer-custom">
+          <h5 class="py-4 footer-custom-column">공지 및 문의</h5>
+          <ul class="list-unstyled">
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">공지사항</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">이벤트</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">FAQ</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">상품문의</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">1:1문의</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">상품 리뷰</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 게시판 -->
+      <div class="col-md-4 text-center d-none d-md-block"> 
+        <div class="align-items-baseline footer-custom">
+          <h5 class="py-4 footer-custom-column">게시판</h5>
+          <ul class="list-unstyled">
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">자유 게시판</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">꿀 Tip 공유</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">MY 애견 자랑</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">나의 문의 내역</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 즐겨찾기 메뉴 -->
+      <div class="col-md-4 text-center d-none d-md-block"> 
+        <div class="align-items-baseline footer-custom">
+          <h5 class="py-4 footer-custom-column">즐겨찾기 메뉴</h5>
+          <ul class="list-unstyled">
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">이벤트</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">찜</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">장바구니</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">주문조회</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">마이페이지</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 고객지원 끝 -->
+<div th:insert="~{fragments/footer :: footer}"></div>
+</body>
+</html>

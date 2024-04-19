@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/header :: header}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HappyMall</title>
+
+</head>
+<style>
+  .modal.fade.show {
+    transform: scale(0.9);
+    transition: transform 0.9s ease;
+  }
+  .modal.fade {
+    transition: opacity 0.5s linear, transform 0.5s ease-out;
+  }
+</style>
+<script>
+  $(document).ready(function () {
+    $("#submitBtn").click(function () {
+      $.ajax( {
+        type: "POST",
+        url: "/resister",
+        data: {
+          itemName: $("#itemName").val(),
+          price: $("#price").val(),
+          stockQuantity: $("#stockQuantity").val()
+        },
+        success: function (response) {
+            $('#priceModalSuccess').modal('show');
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          $('#priceModal').modal('show');
+        }
+      });
+    });
+  });
+</script>
+<body>
+<div th:insert="~{fragments/bodyHeader :: bodyHeader}"></div>
+
+<!-- 모달 -->
+
+<!--같은 상품 다른 가격일때 모달-->
+<div class="modal fade" id="priceModal" tabindex="-1" aria-labelledby="priceModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="priceModalLabel"><i class="bi bi-exclamation-octagon text-danger fs-2"></i> 다른 가격이 이미 존재합니다</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        상품의 가격이 이미 등록된 가격과 다릅니다.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--상품 등록 성공 시 모달-->
+<div class="modal fade" id="priceModalSuccess" tabindex="-1" aria-labelledby="priceModalSuccessLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="priceModalSuccessLabel"><i class="bi bi-check-lg text-success fs-1"></i> 정상 등록</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        상품 등록이 성공했습니다.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<section class="mt-md-5 my-3 mb-5">
+  <div class="container">
+    <div class="row justify-content-center align-items-center vh-100">
+      <div class="col-md-6">
+        <div class="card shadow bg-custom-color-login">
+          <div class="card-body p-4">
+            <h5 class="card-title text-center mb-4 fs-3 text-muted">상품 등록</h5>
+            <p class="text-danger fw-bold">현재 세팅은 하루조이 상품만 연결시킴, 상품명을 하루조이로 세팅하고 가격은 마음대로 잡아도 무관</p>
+            <form th:object="${itemForm}" method="post">
+              <div class="pt-3">
+                <div class="mb-3">
+                  <span class="text-danger fw-bold">* </span><label th:for="name" class="form-label fw-bold">상품명</label>
+                  <input type="text" class="form-control" th:field="*{itemName}" placeholder="상품을 입력하세요" required autofocus>
+                </div>
+                <div class="mb-3">
+                  <span class="text-danger fw-bold">* </span><label th:for="price" class="form-label fw-bold">가격</label>
+                  <input type="number" class="form-control" th:field="*{price}" required>
+                </div>
+                <div class="mb-3">
+                  <span class="text-danger fw-bold">* </span><label th:for="quantity" class="form-label fw-bold">수량</label>
+                  <input type="number" class="form-control" th:field="*{stockQuantity}" required>
+                </div>
+                <button id="submitBtn" type="button" class="btn btn-warning">상품 등록</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="py-5"></div>
+<div class="py-5"></div>
+
+<!-- 고객지원 끝 -->
+<div th:insert="~{fragments/footer :: footer}"></div>
+</body>
+</html>

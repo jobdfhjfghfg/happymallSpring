@@ -1,0 +1,39 @@
+spring:
+#  datasource:
+#    url: jdbc:h2:tcp://localhost/~/testdb
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+  datasource:
+#    url: jdbc:mysql://localhost:3306/happymall?serverTimezone=UTC&characterEncoding=UTF-8
+    url: jdbc:mysql://ls-1b8bd38aea94ab594d7dc6cc4fbe20b0dd41a30e.cxaigagq6e8g.ap-northeast-2.rds.amazonaws.com:3306/happymall?serverTimezone=UTC&characterEncoding=UTF-8
+#    username: root
+    username: dbmasteruser
+#    password: 1234
+    password: 5#gd9<0u;W]As:(f:%3NX9:VXw[0t[+V
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+#    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+#      ddl-auto: create   #create   애플리케이션 생성시점에 기본 앤티티지우고 다시 생성한다.   /   update
+      ddl-auto: update
+    properties:
+      hibernate:
+        #        show_sql: true  #생성한 sql system out을 통하여 찍는다
+        format_sql: true
+  thymeleaf:
+    prefix: classpath:/templates/   #접두어
+    suffix: .html            #접미어
+
+server:
+  port: 8081
+
+logging.level:
+  org.hibernate.SQL: debug   #생성한 sql이 로그를 통하여 찍어준다.
+  org.hibernate.orm.jdbc.bind: trace #스프링 부트 3.x, hibernate6
+
+#logging:
+#  level:
+#    org.springframework.security: DEBUG
+

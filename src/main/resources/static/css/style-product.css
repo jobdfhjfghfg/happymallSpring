@@ -1,0 +1,251 @@
+/* 폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Single+Day&display=swap');
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+h1, h2, h3, h4, h5, a, .product-font{
+    font-family: "Single Day", cursive;
+}
+
+/* 네비게이션 */
+.nav-link.active, .nav-link:hover {
+    color: darkblue !important;
+    font-weight: bold;
+}
+
+
+/* 배너 */
+#bannerCarousel {
+    margin: auto;
+    margin-top: 130px;
+    max-width: 1300px;
+}
+
+
+
+/* 카테고리바 색깔 */
+.bg-custom-color {
+    background-color: #ede5a7;
+}
+
+.bg-custom-color-sm {
+    background-color: #e7d12a;
+}
+
+/* 카테고리바 상단고정 */
+.category {
+    position: relative;
+    z-index: 100;
+    top: 65px;
+    left: 0;
+}
+
+/* 카테고리 가운데정렬 마진 */
+.catMargin {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+
+/* 카테고리 호버 시 세부내용 나오게 하기 */
+.dropdown:hover .dropdown-menu {
+    display: block;
+  }
+
+.dropdown-menu {
+    display: none;
+}
+
+/* 신상품, 상품명 등 효과 */
+.product-color:hover {
+    color: #84ecdc !important;
+    font-weight: bold !important;
+    text-decoration: underline !important;
+}
+
+/* 상품 이미지에 호버 시 백그라운드 오퍼시티값 나오는것 */
+
+.image-container {
+    position: relative;
+  }
+
+  .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1); /* 투명한 블랙 오버레이 */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .image-container:hover .image-overlay {
+    opacity: 1;
+  }
+
+  /* 각 상품 트랜지션 */
+.index-card {
+    transition: 0.3s, box-shadow 0.3s ease;
+}
+
+.index-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0,0,0, 0.3);
+}
+
+.index-card-body {
+    transition: background-color 0.3s ease;
+}
+
+.index-card:hover .index-card-body {
+    background-color: #f8f9fa;
+}
+
+
+/* 상품 제목 검정글씨 */
+.product {
+    color: inherit;
+    font-size: 170%;
+    
+}
+
+.product:hover {
+    font-weight: bold;
+}
+
+ 
+
+/* submenu창 */
+.carousel-control-prev, .carousel-control-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5em;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.1);
+    border: none;
+    z-index: 1; /* 이미지 위에 올라오도록 설정 */
+    width: 55px; 
+    height: 55px; 
+}
+
+.carousel-control-prev {
+    left: 0; /* 수정: 왼쪽으로 이동한 정도 */
+    border-radius: 0 5px 5px 0; /* 왼쪽 버튼에만 우측 모서리를 둥글게 */
+}
+
+.carousel-control-next {
+    right: 0; /* 수정: 오른쪽으로 이동한 정도 */
+    border-radius: 5px 0 0 5px; /* 오른쪽 버튼에만 좌측 모서리를 둥글게 */
+}
+
+/* 버튼에 호버 효과 추가 (선택사항) */
+.carousel-control-prev:hover, .carousel-control-next:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* 고객지원 배경색 */
+.bg-service-custom-color {
+    background-color: #e5f7cb;
+}
+
+/* 풋터 배경색 */
+.bg-footer-custom-color {
+    background-color: #c5e6a1;
+}
+
+/* 상품 제목 폰트 */
+@media  screen and (max-width: 576px) {
+    .product-column {
+        font-size: 1em;
+    }
+}
+
+/* 상품 폰트 */
+@media screen and (max-width: 576px) {
+    .product-name {
+        font-size: 1em !important;
+    }    
+}
+
+/* 고객지원 제목라인 */
+@media screen and (max-width: 576px) {
+    .footer-custom-column {
+        font-size: 1.6em;
+    }
+}
+
+/* 풋터 고객지원 세부카테고리 */
+@media screen and (max-width: 576px) {
+    .footer-custom {
+        font-size: 0.9em;
+    }
+}
+
+
+/* 회사소개 이용약관 등 */
+@media screen and (max-width: 576px) {
+    .company {
+        font-size: 10px;
+    }
+}
+/* 320px 회사소개 이용약관 등 */
+@media screen and (max-width: 320px) {
+    .company {
+        font-size: 0.5em;
+    }
+}
+/* 320px 회사소개 상세내용 */
+@media screen and (max-width: 320px) {
+    .company-info {
+        font-size: 0.5em !important;
+    }
+}
+
+/* 회사소개 상세내용 */
+@media screen and (max-width: 576px) {
+    .company-info {
+        font-size: 0.7em;
+    }
+}
+
+  /* Top버튼 */
+
+  #scrollToTopBtn {
+    position: fixed;
+    bottom: 60px;
+    right: 20px;
+}
+
+
+/* 검색창 메뉴버튼 */
+#submenu {
+    position: fixed;
+    bottom: 50%;
+    right: 20px;
+}
+
+#footerservice {
+    width: 22%; 
+  }
+
+.submenu-menu {
+    width: 70%;
+    margin: auto;
+}
+
+/* 오프캔버스 글자사이즈 */
+.custo {
+    font-size: 10px;
+}
+
+/* 오프캔버스 전환 시 그 외 배경 투명하게 만듦 */
+.offcanvas-backdrop {
+    background-color: rgba(0, 0, 0, 0.0) !important;
+}
+

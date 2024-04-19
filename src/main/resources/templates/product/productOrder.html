@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/header :: header}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HappyMall</title>
+    <link rel="stylesheet" href="/css/productOrderStyle.css">
+</head>
+<body>
+<div th:insert="~{fragments/bodyHeader :: bodyHeader}"></div>
+<section class="py-5"></section>
+<section class="py-5">
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-md-4 col-sm">
+                <img src="/image/간식(강아지)/간식2.jpg" alt="강아지 간식" class="img-fluid">
+            </div>
+            <div class="col-md-7 ps-4">
+                <h3 th:text="${productOne}" class="ms-3"></h3>
+                <hr class="py-3">
+                <div class="row">
+                    <div class="col-md-4 col-sm">
+                        <p>판 매 가</p>
+                        <p>제 조 사</p>
+                        <p>원 산 지</p>
+                        <p>재&nbsp;&nbsp;&nbsp;&nbsp;고</p>
+                        <p th:if="${not #strings.isEmpty(outOfStockMessage)}" class="text-danger fw-bold"><i class="bi bi-exclamation-diamond text-danger fw-bold"></i> &nbsp;재고가 부족합니다.</p>
+                    </div>
+                    <div class="col-md-6 col-sm pb-3">
+                        <p th:text="${productOnePrice} + '원'" class="fw-bold"></p>
+                        <p>JKfood</p>
+                        <p>Korea</p>
+                        <p th:text="${productQuantity} + '개'"></p>
+                    </div>
+                    <hr>
+                    <div class="d-flex">
+                        <form action="">
+                            <button type="submit" class="btn btn-secondary rounded-circle me-4" style="width: 100px; height: 100px; border-radius: 50%; display: inline-flex; justify-content: center; align-items: center; border: none; margin: 5px;">찜</button>
+                        </form>
+                        <form th:action="@{/member/cart/{id}(id=${inventoryId.id})}" th:each="inventoryId : ${productOrder}" method="post">
+                            <input type="hidden" name="count" id="count" value="1">
+                            <button th:if="${not #strings.isEmpty(outOfStockMessage)}" class="btn btn-secondary rounded-circle me-4" style="width: 100px; height: 100px; border-radius: 50%; display: inline-flex; justify-content: center; align-items: center; border: none; margin: 5px;">장바구니</button>
+                            <button th:unless="${not #strings.isEmpty(outOfStockMessage)}" type="submit" class="btn btn-secondary rounded-circle me-4" style="width: 100px; height: 100px; border-radius: 50%; display: inline-flex; justify-content: center; align-items: center; border: none; margin: 5px;">장바구니</button>
+                        </form>
+                        <div>
+<!--                            <a href="productOrder" class="btn btn-warning rounded-circle" style="width: 100px;height: 100px; border-radius: 50%; display: inline-flex; justify-content: center; align-items: center; border: none; margin: 5px;">바로 구매</a>-->
+                        </div>
+
+
+                        <div>
+                            <a th:if="${not #strings.isEmpty(outOfStockMessage)}" class="btn btn-secondary rounded-circle" style="width: 100px;height: 100px; border-radius: 50%; display: inline-flex; justify-content: center; align-items: center; border: none; margin: 5px;">바로 구매</a>
+                            <a th:href="@{/productOrder/{id}/pay (id=${inventoryId.id})}" th:each="inventoryId : ${productOrder}" th:unless="${not #strings.isEmpty(outOfStockMessage)}" class="btn btn-warning rounded-circle" style="width: 100px;height: 100px; border-radius: 50%; display: inline-flex; justify-content: center; align-items: center; border: none; margin: 5px;">바로구매</a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 고객지원 -->
+<section class="py-5 bg-service-custom-color text-dark">
+  <div class="container">
+    <div class="row">
+
+      <!-- 공지 및 문의 -->
+      <div class="col-md-4 col-sm-12 text-center"> 
+        <div class="align-items-baseline footer-custom">
+          <h5 class="py-4 footer-custom-column">공지 및 문의</h5>
+          <ul class="list-unstyled">
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">공지사항</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">이벤트</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">FAQ</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">상품문의</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">1:1문의</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">상품 리뷰</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 게시판 -->
+      <div class="col-md-4 text-center d-none d-md-block"> 
+        <div class="align-items-baseline footer-custom">
+          <h5 class="py-4 footer-custom-column">게시판</h5>
+          <ul class="list-unstyled">
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">자유 게시판</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">꿀 Tip 공유</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">MY 애견 자랑</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">나의 문의 내역</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 즐겨찾기 메뉴 -->
+      <div class="col-md-4 text-center d-none d-md-block"> 
+        <div class="align-items-baseline footer-custom">
+          <h5 class="py-4 footer-custom-column">즐겨찾기 메뉴</h5>
+          <ul class="list-unstyled">
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">이벤트</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">찜</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">장바구니</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">주문조회</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">마이페이지</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 고객지원 끝 -->
+<div th:insert="~{fragments/footer :: footer}"></div>
+</body>
+</html>

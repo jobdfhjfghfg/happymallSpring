@@ -1,0 +1,19 @@
+/* 폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Single+Day&display=swap');
+
+body {
+    background-color: black;
+}
+
+.orderBtnStyle {
+    width: 50px; /* 버튼의 너비 */
+    height: 50px; /* 버튼의 높이 */
+    border-radius: 50%; /* 원 모양으로 만들기 위해 반지름 지정 */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: none; /* 테두리 제거 */
+    margin: 5px; /* 버튼 사이의 여백 */
+}
+
+

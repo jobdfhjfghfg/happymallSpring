@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/header :: header}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HappyMall</title>
+</head>
+<body>
+<div th:insert="~{fragments/bodyHeader :: bodyHeader}"></div>
+
+<section class="py-5 mt-md-5 my-3 mb-5">
+  <div class="container pt-5">
+    <div class="row justify-content-center align-items-center vh-100">
+      <div class="col-md-6">
+        <div class="card shadow bg-custom-color-login">
+          <div class="card-body p-4">
+            <h5 class="card-title text-center mb-4 fs-3 text-muted">장바구니 수정</h5>
+            <form th:object="${updateCart}" method="post">
+              <div class="pt-3">
+                <div class="mb-3">
+                  <label th:for="name" class="form-label fw-bold">상품명</label>
+                  <input type="text" class="form-control" th:field="*{itemName}" readonly>
+                </div>
+                <div class="mb-3">
+                  <label th:for="count" class="form-label fw-bold">수량</label>
+                  <input type="number" class="form-control" th:field="*{count}" required>
+                </div>
+                <button type="submit" class="btn bg-custom-color w-100 login-select">수정하기</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="py-5"></div>
+<div class="py-5"></div>
+<div class="py-5"></div>
+<div class="py-5"></div>
+
+<!-- 고객지원 끝 -->
+<div th:insert="~{fragments/footer :: footer}"></div>
+
+<script>
+  $(document).ready(function () {
+    $('#signupForm').submit(function (event) {
+      // 비밀번호 확인
+      var password = $('#password').val();
+      var confirmPassword = $('#confirmPassword').val();
+
+      if (password !== confirmPassword) {
+        // 비밀번호가 일치하지 않는 경우
+        $('#passwordError').removeClass('d-none').text('비밀번호가 일치하지 않습니다.');
+        event.preventDefault(); // 폼 제출 막기
+      } else {
+        // 비밀번호가 일치하는 경우
+        $('#passwordError').addClass('d-none');
+      }
+
+    });
+
+  });
+</script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+  const btn = document.querySelector("#btn1")
+  btn.addEventListener("click", () => {
+    new daum.Postcode({
+      oncomplete: function(data) {
+        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+        // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+
+        let fullAddr = '';
+        let extraAddr = '';
+
+        if (data.userSelectedType === 'R') { //도로명주소인 경우
+          fullAddr = data.roadAddress;
+        } else {
+          fullAddr = data.jibunAddress; //지번주소인 경우
+        }
+
+        if (data.userSelectedType === 'R') {
+
+          if (data.bname !== '') {
+            extraAddr += data.bname;
+          }
+
+          if (data.buildingName !== '') {
+            extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName); //법정동주소가 비어있지 않으면 빌딩명이랑 붙여서 쓰고 아니면 빌딩명만 쓰기
+          }
+
+          fullAddr += (extraAddr !== '' ? '(' + extraAddr + ')' : '');
+
+        } else {
+          document.getElementById("extraAddr").value = '';
+        }
+
+        document.getElementById('zipcode').value = data.zonecode;
+        document.getElementById("fullAddr").value = fullAddr;
+        document.getElementById("extraAddr").focus();
+      }
+    }).open();
+  });
+
+</script>
+</body>
+</html>

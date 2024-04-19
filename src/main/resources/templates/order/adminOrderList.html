@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/header :: header}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HappyMall</title>
+</head>
+<body>
+<div th:insert="~{fragments/bodyHeader :: bodyHeader}"></div>
+
+<section class="py-5"></section>
+<section class="py-5">
+  <div class="container">
+    <h4 class="text-center py-5">주문 내역</h4>
+    <table class="table table-striped py-5">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>회원명</th>
+        <th>상품명</th>
+        <th>주문가격</th>
+        <th>재고수량</th>
+        <th>수량</th>
+        <th>주문 일자</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="orders : ${order}">
+        <td th:text="${orders.id}"></td>
+        <td th:text="${orders.member.name}"></td>
+        <td th:text="${orders.orderItems[0].inventory.name}"></td>
+        <td th:text="${orders.orderItems[0].inventory.price}"></td>
+        <td th:text="${orders.orderItems[0].inventory.stockQuantity}"></td>
+        <td th:text="${orders.orderQuantity}"></td>
+        <td th:text="${orders.orderDate}"></td>
+        <td>
+<!--          <a href="#" th:href="@{/itemList/{id}/edit (id=${item.id})}" class="btn btn-primary" role="button">수정</a>-->
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="py-5">
+
+</div>
+
+<!-- 고객지원 끝 -->
+<div th:insert="~{fragments/footer :: footer}"></div>
+</body>
+</html>

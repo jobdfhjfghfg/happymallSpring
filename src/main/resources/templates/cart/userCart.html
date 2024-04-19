@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/header :: header}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HappyMall</title>
+</head>
+<body>
+<div th:insert="~{fragments/bodyHeader :: bodyHeader}"></div>
+
+<section class="py-5"></section>
+<section class="py-5">
+  <div class="container">
+    <h4 class="text-center py-5">장바구니 목록</h4>
+    <div class="row">
+      <div class="col-8">
+        <table class="table table-striped py-5">
+          <thead>
+          <tr>
+            <th></th>
+            <th>상품명</th>
+            <th>수량</th>
+            <th>가격</th>
+            <th>수정</th>
+            <th>삭제</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="item, index : ${cartItems}">
+            <td><input type="checkbox" name="selectedItems" th:value="${item.id}"></td>
+            <td th:text="${item.itemName}"></td>
+            <td th:text="${item.count}"></td>
+            <td th:text="${item.price}"></td>
+            <td>
+              <a th:href="@{/member/cart/{id}/edit (id=${item.id})}" class="btn btn-primary" role="button">수정</a>
+            </td>
+            <td>
+              <form th:action="@{/member/cart/{id}/delete (id=${item.id})}" method="post">
+                <button type="submit" class="btn btn-danger">삭제</button>
+              </form>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-4">
+        <div class="border border-1 py-3">
+          <label class="mx-3">총 금액</label>
+          <span th:text="${totalPrice}" class="fw-bold"></span>
+          <div class="py-3">
+            <form action="/member/cart/order" method="post">
+              <input type="hidden" id="selectedItemsInput" name="selectedItems" value="">
+              <button type="submit" class="btn btn-primary">선택한 상품 주문</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="py-5">
+
+</div>
+
+<!-- 고객지원 끝 -->
+<div th:insert="~{fragments/footer :: footer}"></div>
+</body>
+</html>

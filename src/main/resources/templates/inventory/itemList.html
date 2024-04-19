@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/header :: header}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HappyMall</title>
+</head>
+<body>
+<div th:insert="~{fragments/bodyHeader :: bodyHeader}"></div>
+  <!-- 배너 라인(캐러셀) -->
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div id="bannerCarousel" class="carousel slide carousel-fade pt-5" data-bs-ride="carousel" data-bs-interval="3000">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="./image/배너/홍보배너2.jpg" class="d-block w-100 rounded-3" alt="배너">
+          </div>
+          <div class="carousel-item">
+            <img src="./image/배너/홍보배너1.jpg" class="d-block w-100 rounded-3" alt="배너">
+          </div>
+          <!-- 추가적인 배너 이미지들을 필요에 따라 추가예정 -->
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 배너 라인(캐러셀) 끝 -->
+
+<section class="py-5">
+  <div class="container">
+    <h4 class="text-center py-5">상품 목록</h4>
+    <table class="table table-striped py-5">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>상품명</th>
+        <th>가격</th>
+        <th>수량</th>
+        <th>입고 일자</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="item : ${items}">
+        <td th:text="${item.id}"></td>
+        <td th:text="${item.itemName}"></td>
+        <td th:text="${item.price}"></td>
+        <td th:text="${item.stockQuantity}"></td>
+        <td th:text="${item.inventoryInDate}"></td>
+        <td>
+          <a href="#" th:href="@{/itemList/{id}/edit (id=${item.id})}" class="btn btn-primary" role="button">수정</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="py-5">
+
+</div>
+
+<!-- 고객지원 끝 -->
+<div th:insert="~{fragments/footer :: footer}"></div>
+</body>
+</html>

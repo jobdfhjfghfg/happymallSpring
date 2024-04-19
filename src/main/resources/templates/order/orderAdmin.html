@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/header :: header">
+</head>
+<script>
+    $(document).ready(function () {
+        $("#submitOrderBtn").click(function () {
+            // 클릭 이벤트가 발생했을 때 로그 출력
+            console.log("주문 버튼이 클릭되었습니다.");
+
+            $.ajax({
+                type: "POST",
+                url: "/orderAdmin",
+                data: {
+                    memberId: $("#member").val(),
+                    itemId: $("#item").val(),
+                    quantity: $("#quantity").val()
+                },
+                beforeSend: function() {
+                    // AJAX 요청이 전송되기 전에 로그 출력
+                    console.log("AJAX 요청을 보내기 전입니다.");
+                },
+                success: function (response) {
+                    // 성공적으로 응답을 받았을 때 로그 출력
+                    console.log("주문 요청이 성공적으로 처리되었습니다.");
+                    $('#orderModalSuccess').modal('show');
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    // 요청이 실패했을 때 로그 출력
+                    console.error("주문 요청이 실패했습니다:", errorThrown);
+                    $("#orderModalFail").modal('show');
+                }
+            });
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        // "닫기" 버튼 클릭 이벤트 핸들러
+        $('#listModalBtn, #homeModalBtn').click(function() {
+            // 클릭된 버튼에 따라 다른 경로로 이동
+            if (this.id === 'listModalBtn') {
+                window.location.href = "/itemList";
+            } else if (this.id === 'homeModalBtn') {
+                window.location.href = "/";
+            }
+        });
+    });
+</script>
+<body>
+<div th:insert="~{fragments/bodyHeader :: bodyHeader}"></div>
+
+<div class="modal fade" id="orderModalSuccess" tabindex="-1" aria-labelledby="orderModalSuccessLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="orderModalSuccessLabel"><i class="bi bi-check-lg text-success fs-1"></i> 상품 주문 성공</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                상품 주문이 완료됐습니다.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">추가 주문하기</button>
+                <button type="button" class="btn btn-secondary" id="homeModalBtn">홈으로 가기</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="orderModalFail" tabindex="-1" aria-labelledby="orderModalFailLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="orderModalFailLabel"><i class="bi bi-exclamation-octagon text-danger fs-2"></i> 주문 실패</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                주문 실패했습니다. 재고를 확인 해 주세요.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="listModalBtn">재고 확인하기</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="pt-5 mt-5">
+    <div class="container">
+        <div class="row justify-content-center align-items-center vh-100">
+          <div class="col-md-6">
+            <div class="card shadow bg-custom-color-login">
+              <div class="card-body p-4">
+                <h5 class="card-title text-center mb-4">주문 하기</h5>
+                <form method="post" th:object="${orderForm}">
+                  <div class="mb-3 form-group">
+                    <label for="member" class="form-label">회원 아이디</label>
+                    <select name="memberId" id="member" class="form-control">
+                      <option value="">회원 선택</option>
+                      <option th:each="member : ${members}" th:value="${member.id}" th:text="${member.name}"></option>
+                    </select>
+                  </div>
+                    <div class="mb-3 form-group">
+                        <label for="item">상품명</label>
+                        <select name="itemId" id="item" class="form-control">
+                            <option value="">상품선택</option>
+                            <option th:each="item : ${items}" th:value="${item.id}" th:text="${item.itemName}"></option>
+                        </select>
+                    </div>
+                  <div class="mb-3 form-group">
+                    <label for="quantity">주문수량</label>
+                    <input type="number" th:field="*{quantity}" class="form-count form-control" id="quantity" placeholder="주문 수량을 입력하세요">
+                  </div>
+                    <button type="button" id="submitOrderBtn" class="btn btn-warning">주문하기</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
+<div th:insert="~{fragments/footer :: footer}"></div>
+</body>
+</html>

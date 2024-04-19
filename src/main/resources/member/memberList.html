@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/header :: header}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HappyMall</title>
+</head>
+<body>
+<div th:insert="~{fragments/bodyHeader :: bodyHeader}"></div>
+  <!-- 배너 라인(캐러셀) -->
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div id="bannerCarousel" class="carousel slide carousel-fade pt-5" data-bs-ride="carousel" data-bs-interval="3000">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="./image/배너/홍보배너2.jpg" class="d-block w-100 rounded-3" alt="배너">
+          </div>
+          <div class="carousel-item">
+            <img src="./image/배너/홍보배너1.jpg" class="d-block w-100 rounded-3" alt="배너">
+          </div>
+          <!-- 추가적인 배너 이미지들을 필요에 따라 추가예정 -->
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 배너 라인(캐러셀) 끝 -->
+
+<section class="py-5">
+  <div class="container">
+    <h2>관리자 메뉴</h2>
+    <div class="row py-4">
+      <div class="col-md-6">
+        <h5 class="pb-4">회원 관리</h5>
+        <a href="" class="btn btn-warning mb-3">관리자 등록</a>
+        <br>
+        <a href="" class="btn btn-warning">회원 목록</a>
+      </div>
+
+      <div class="col-md-6">
+        <h5 class="pb-4">상품 관리</h5>
+        <a href="" class="btn btn-secondary mb-3">상품 등록</a>
+        <br>
+        <a href="" class="btn btn-secondary">상품 목록</a>
+      </div>
+    </div>
+
+    <div class="row py-4">
+      <div class="col-md-6">
+        <h5 class="pb-4">주문 관리</h5>
+        <a href="" class="btn btn-info mb-3">상품 주문</a>
+        <br>
+        <a href="" class="btn btn-info">주문 내역</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="py-5">
+
+</div>
+
+<!-- 고객지원 끝 -->
+<div th:insert="~{fragments/footer :: footer}"></div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/header :: header}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HappyMall - 회원가입</title>
+</head>
+<script>
+  $(document).ready(function () {
+    $('#submitBtn').click(function () {
+      // 비밀번호 확인
+      var password = $('#password').val();
+      var confirmPassword = $('#confirmPassword').val();
+
+      if (password !== confirmPassword) {
+        // 비밀번호가 일치하지 않는 경우
+        $('#passwordError').removeClass('d-none').text('비밀번호가 일치하지 않습니다.');
+        return; // 함수 종료
+      }
+
+      // 이하 코드는 비밀번호가 일치하는 경우에만 실행됩니다.
+
+      $.ajax( {
+        type: "POST",
+        url: "/signUp",
+        data: {
+          loginId: $("#loginId").val(),
+          password: $("#password").val(),
+          name: $("#name").val(),
+          birthday: $("#birthday").val(),
+          emailAddress: $("#emailAddress").val(),
+          zipcode: $("#zipcode").val(),
+          fullAddr: $("#fullAddr").val(),
+          extraAddr: $("#extraAddr").val(),
+          address: $("#address").val(),
+          userPhoneNumber: $("#userPhoneNumber").val(),
+          grade: $("#grade").val()
+        },
+        success: function (response) {
+          $('#memberSuccess').modal('show');
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          $('#memberFail').modal('show');
+        }
+      });
+    });
+  });
+
+</script>
+<body>
+<div th:insert="~{fragments/bodyHeader :: bodyHeader}"></div>
+<!-- 회원가입 -->
+
+<section class="py-5 mt-md-5 my-3 mb-5">
+  <div class="container pt-5">
+    <div class="row justify-content-center align-items-center vh-100">
+      <div class="col-md-6">
+        <div class="card shadow bg-custom-color-login">
+          <div class="card-body p-4">
+            <h5 class="card-title text-center mb-4 fs-3 text-muted">관리자 등록</h5>
+            <form th:object="${adminForm}" th:action="@{/signUp}" method="post" id="signupForm">
+              <div class="pt-3">
+                <p class="text-end text-muted"><span class="text-danger fw-bold">* </span> 은 필수항목입니다.</p>
+                <div class="mb-3">
+                  <span class="text-danger fw-bold">* </span><label th:for="name" class="form-label fw-bold">이름</label>
+                  <input type="text" class="form-control" th:field="*{name}" placeholder="이름을 입력하세요" required autofocus>
+                </div>
+                <div class="mb-3">
+                  <span class="text-danger fw-bold">* </span><label th:for="id" class="form-label fw-bold">아이디</label>
+                  <input type="text" class="form-control" th:field="*{loginId}" placeholder="아이디를 입력하세요" required>
+                </div>
+                <div class="mb-3">
+                  <span class="text-danger fw-bold">* </span><label th:for="password" class="form-label fw-bold">비밀번호</label>
+                  <input type="password" class="form-control" th:field="*{password}" placeholder="비밀번호를 입력하세요" required>
+                </div>
+                <div class="mb-3">
+                  <span class="text-danger fw-bold">* </span><label for="confirmPassword" class="form-label fw-bold">비밀번호 확인</label>
+                  <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="비밀번호를 확인하세요" required>
+                  <small id="passwordError" class="form-text text-danger d-none">비밀번호가 일치하지 않습니다.</small>
+                </div>
+                <div class="mb-3">
+                  <span class="text-danger fw-bold">* </span><label th:for="userPhoneNumber" class="form-label fw-bold">전화번호</label>
+                  <input type="text" class="form-control" th:field="*{userPhoneNumber}" name="userbirthday" placeholder="ex : 010-1111-1111" maxlength="13" required>
+                </div>
+                <div class="mb-3">
+                  <span class="text-danger fw-bold">* </span><label th:for="zipcode" class="form-label fw-bold">주소</label><br>
+                  <input type="text" class="form-control zipcodeStyle" th:field="*{zipcode}" maxlength="5" readonly required>
+                  <input type="button" class="btn btn-warning ms-3 btn-sm" value="우편번호 검색" id="btn" name="homeAddress" placeholder="우편번호"><br>
+                  <div class="mt-3">
+                    <input type="text" th:field="*{fullAddr}" class="form-control me-2 fullAddrStyle" readonly required>
+                    <input type="text" th:field="*{extraAddr}" class="form-control border-0 fullAddrStyle" placeholder="나머지 주소">
+                  </div>
+
+                </div>
+                <button type="submit" class="btn bg-custom-color w-100 login-select">가입하기</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+</section>
+<section class="py-5">
+</section>
+<section class="py-5">
+</section>
+<div th:insert="~{fragments/bodyHeader :: bodyHeader}"></div>
+<script>
+  $(document).ready(function () {
+            $('#signupForm').submit(function (event) {
+                // 비밀번호 확인
+                var password = $('#password').val();
+                var confirmPassword = $('#confirmPassword').val();
+
+                if (password !== confirmPassword) {
+                    // 비밀번호가 일치하지 않는 경우
+                    $('#passwordError').removeClass('d-none').text('비밀번호가 일치하지 않습니다.');
+                    event.preventDefault(); // 폼 제출 막기
+                } else {
+                    // 비밀번호가 일치하는 경우
+                    $('#passwordError').addClass('d-none');
+                }
+
+            });
+
+        });
+</script>
+</body>
+</html>

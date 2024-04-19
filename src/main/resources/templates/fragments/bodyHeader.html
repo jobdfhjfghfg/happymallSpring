@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="header" th:fragment="bodyHeader">
+
+        <!-- 네비게이션 -->
+
+        <div class="fixed-top bg-custom-color">
+            <nav class="navbar navbar-expand-md rounded-3">
+                <div class="container-fluid align-items-center">
+                    <div class="text-center z-1 position-relative ms-5">
+                        <a class="navbar-brand" href="/"><img src="/image/로고/축소.png" alt="로고"></a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menubar" aria-controls="menubar" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="menubar">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item nav-item-login"><a class="nav-link" th:href="@{/login}">로그인</a></li>
+                            <li><form th:action="@{/logout}" method="post"><button type="submit" class="btn nav-link nav-item-logout" style="font-family: 'Single Day', cursive;">로그아웃</button></form></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/signUp}">회원가입</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">주문내역</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="favority.html">찜</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/member/cart}">장바구니</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="#">마이페이지</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- 네비게이션 끝 -->
+
+            <!-- 카테고리바 -->
+
+            <a class="btn d-md-none rounded-circle bg-custom-color-sm" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                <i class="bi bi-three-dots-vertical"></i>
+            </a>
+
+            <!-- 오픈캔버스(sm사이즈) -->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasEntireLabel">전체 카테고리</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body bg-custom-color">
+                    <div>
+                        <nav class="navbar navbar-expand-md">
+                            <div class="container-fluid">
+                                <div class="navbar-collapse" id="navbarCategoryContent">
+                                    <!-- class="collapse navbar-collapse" -->
+                                    <ul class="navbar-nav mb-2 mb-lg-0 catMargin">
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle px-5" data-bs-toggle="dropdown" data-bs-auto-close="true" href="#" role="button" aria-expanded="false">특가상품</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item text-decoration-none" href="#">신상품</a></li>
+                                                <li><a class="dropdown-item text-decoration-none" href="#">이월상품</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle px-5" data-bs-toggle="dropdown" data-bs-auto-close="true" href="#" role="button" aria-expanded="false">Hot</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item text-decoration-none" href="#">사료, 간식</a></li>
+                                                <li><a class="dropdown-item text-decoration-none" href="#">산책</a></li>
+                                                <li><a class="dropdown-item text-decoration-none" href="#">장난감</a></li>
+                                                <li><a class="dropdown-item text-decoration-none" href="#">건강</a></li>
+                                                <li><a class="dropdown-item text-decoration-none" href="#">목욕</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle px-5" data-bs-toggle="dropdown" data-bs-auto-close="true" href="#" role="button" aria-expanded="false">강아지</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item text-decoration-none" href="#">사료, 간식</a></li>
+                                                <li><a class="dropdown-item text-decoration-none" href="#">하우스</a></li>
+                                                <li><a class="dropdown-item text-decoration-none" href="#">외출 & 산책</a></li>
+                                                <li><a class="dropdown-item text-decoration-none" href="#">장난감</a></li>
+                                                <li><a class="dropdown-item text-decoration-none" href="#">건강식품</a></li>
+                                                <li><a class="dropdown-item text-decoration-none" href="#">목욕</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle px-5" data-bs-toggle="dropdown" data-bs-auto-close="true" href="#" role="button" aria-expanded="false">고양이</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item text-decoration-none" href="#">사료, 간식</a></li>
+                                                <li><a class="dropdown-item text-decoration-none" href="#">하우스</a></li>
+                                                <li><a class="dropdown-item text-decoration-none" href="#">외출</a></li>
+                                                <li><a class="dropdown-item text-decoration-none" href="#">장난감</a></li>
+                                                <li><a class="dropdown-item text-decoration-none" href="#">건강식품</a></li>
+                                                <li><a class="dropdown-item text-decoration-none" href="#">목욕</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle px-5" data-bs-toggle="dropdown" data-bs-auto-close="true" href="#" role="button" aria-expanded="false">이벤트</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item text-decoration-none" href="#">진행중 이벤트</a></li>
+                                                <li><a class="dropdown-item text-decoration-none" href="#">종료된 이벤트</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <div class="row mx-auto">
+                                            <div class="col-md-6"></div> <!--빈 컬럼, 왼쪽 여백을 만듦 -->
+
+                                            <div class="col-md-6">
+                                                <form class="form-inline">
+                                                    <div class="input-group">
+                                                        <input class="form-control" type="search" placeholder="상품을 입력하세요." aria-label="Search">
+                                                        <div class="input-group-append">
+                                                            <button class="btn btn-outline-dark ml-3 mr-3" type="submit">검색</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="custo text-center pt-5">
+                                            <p class="fw-bold fs-6">고객지원</p>
+                                            <p class="text-muted">Tel: 070-1234-5678 &nbsp;Fax: 031-111-1111</p>
+                                            <p class="text-muted">평일 오전 10시 ~ 오후 6시 / 점심시간 12시 ~ 1시</p>
+                                            <p class="text-muted">토요일 오전 10시 ~ 오후 3시</p>
+                                            <p class="text-muted">일요일, 공휴일 휴무</p>
+                                            <br>
+                                            <p class="fw-bold fs-6">반품 및 환불 배송지</p>
+                                            <p class="text-muted">경기도 성남시 중원대로 111번길 11 1층 HappyMall</p>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+            <!-- md사이즈 -->
+
+            <nav class="navbar navbar-expand-md d-none d-md-flex">
+                <div class="container-fluid">
+                    <div class="navbar-collapse" id="navbarSupportedContent">
+                        <!-- class="collapse navbar-collapse" -->
+                        <ul class="navbar-nav mb-2 mb-lg-0 catMargin">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle px-5" data-bs-toggle="dropdown" data-bs-auto-close="true" href="#" role="button" aria-expanded="false">특가상품</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item text-decoration-none" href="#">신상품</a></li>
+                                    <li><a class="dropdown-item text-decoration-none" href="#">이월상품</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle px-5" data-bs-toggle="dropdown" data-bs-auto-close="true" href="#" role="button" aria-expanded="false">Hot</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item text-decoration-none" href="#">사료, 간식</a></li>
+                                    <li><a class="dropdown-item text-decoration-none" href="#">산책</a></li>
+                                    <li><a class="dropdown-item text-decoration-none" href="#">장난감</a></li>
+                                    <li><a class="dropdown-item text-decoration-none" href="#">건강</a></li>
+                                    <li><a class="dropdown-item text-decoration-none" href="#">목욕</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle px-5" data-bs-toggle="dropdown" data-bs-auto-close="true" href="#" role="button" aria-expanded="false">강아지</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item text-decoration-none" href="#">사료, 간식</a></li>
+                                    <li><a class="dropdown-item text-decoration-none" href="#">하우스</a></li>
+                                    <li><a class="dropdown-item text-decoration-none" href="#">외출 & 산책</a></li>
+                                    <li><a class="dropdown-item text-decoration-none" href="#">장난감</a></li>
+                                    <li><a class="dropdown-item text-decoration-none" href="#">건강식품</a></li>
+                                    <li><a class="dropdown-item text-decoration-none" href="#">목욕</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle px-5" data-bs-toggle="dropdown" data-bs-auto-close="true" href="#" role="button" aria-expanded="false">고양이</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item text-decoration-none" href="#">사료, 간식</a></li>
+                                    <li><a class="dropdown-item text-decoration-none" href="#">하우스</a></li>
+                                    <li><a class="dropdown-item text-decoration-none" href="#">외출</a></li>
+                                    <li><a class="dropdown-item text-decoration-none" href="#">장난감</a></li>
+                                    <li><a class="dropdown-item text-decoration-none" href="#">건강식품</a></li>
+                                    <li><a class="dropdown-item text-decoration-none" href="#">목욕</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle px-5" data-bs-toggle="dropdown" data-bs-auto-close="true" href="#" role="button" aria-expanded="false">이벤트</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item text-decoration-none" href="#">진행중 이벤트</a></li>
+                                    <li><a class="dropdown-item text-decoration-none" href="#">종료된 이벤트</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- 카테고리바 끝 -->
+
+        <!-- Top버튼 -->
+        <a href="#" class="btn bg-custom-color rounded-circle btn-lg affix-top fs-6" id="scrollToTopBtn">Top</a>
+        <!-- Top버튼 끝 -->
+
+        <!-- search바 -->
+        <a class="btn btn-dark rounded-circle btn-lg affix-top fs-6 d-none d-sm-block" data-bs-toggle="offcanvas" href="#footerservice" role="button" aria-controls="footerservice" id = "submenu">
+            <i class="bi bi-caret-left-fill"></i>
+        </a>
+
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="footerservice" aria-labelledby="footerserviceLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">상품 검색</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div>
+                    <form class="form-inline">
+                        <div class="input-group">
+                            <input class="form-control" type="search" placeholder="상품을 입력하세요." aria-label="Search">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-dark ml-3 mr-3" type="submit">검색</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="carousel-sub-menu1" class="carousel slide pt-3" data-bs-ride="carousel" data-bs-interval="4000">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="py-3 submenu-menu">
+                                <a href="#"><img src="./image/간식(고양이)/고양이간식4.png" alt="간식" class="img-fluid"></a>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="submenu-menu">
+                                <a href="#"><img src="./image/강아지 하우스/강아지 하우스4.jpg" alt="하우스" class="img-fluid"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel-sub-menu1" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carousel-sub-menu1" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <div id="carousel-sub-menu2" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="py-3 submenu-menu">
+                                <a href="#"><img src="./image/강아지 하우스/강아지 하우스1.jpg" alt="하우스" class="img-fluid"></a>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="submenu-menu">
+                                <a href="#"><img src="./image/간식(고양이)/고양이간식1.jpg" alt="간식" class="img-fluid"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel-sub-menu2" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carousel-sub-menu2" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="custo text-center pt-3">
+                <p class="fw-bold fs-6">고객지원</p>
+                <p class="text-muted">Tel: 070-1234-5678 &nbsp;Fax: 031-111-1111</p>
+                <p class="text-muted">평일 오전 10시 ~ 오후 6시 / 점심시간 12시 ~ 1시</p>
+                <p class="text-muted">토요일 오전 10시 ~ 오후 3시</p>
+                <p class="text-muted">일요일, 공휴일 휴무</p>
+                <br>
+                <p class="fw-bold fs-6">반품 및 환불 배송지</p>
+                <p class="text-muted">경기도 성남시 중원대로 111번길 11 1층 HappyMall</p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

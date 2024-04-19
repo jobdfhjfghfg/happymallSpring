@@ -1,0 +1,291 @@
+<!--결제페이지 문제점
+결제 api자체는 동작되도록 했지만 db로 전달해주는 ajax 동작을 안함, 수량을 안넣고 결제버튼을 눌러야 정상적으로 결제창이 나오는점-->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+    <script>
+        var IMP = window.IMP;
+        IMP.init("imp31770823");
+
+        function requestPay() {
+            IMP.request_pay(
+
+                {
+                    pg: "kakaopay"
+                    pay_method: "card",
+                    merchant_uid: "57008833-33007",
+                    name: "하루조이",
+                    amount: 24000,
+                    buyer_email: "test@happymall.com",
+                    buyer_name: "테스트 ",
+                    buyer_tel: "010-1234-5678",
+                    buyer_addr: "서울특별시 강남구 삼성동",
+                    buyer_postcode: "123-456",
+                    m_redirect_url: "/"
+                },
+                function (rsp) {
+                    console.log(rsp);
+                    if (rsp.success) {
+
+                        var buyerName = document.getElementById("buyerName").value;
+                        var zipcode = document.getElementById("zipcode").value;
+                        var fullAddr = document.getElementById("fullAddr").value;
+                        var extraAddr = document.getElementById("extraAddr").value;
+                        var orderNotice = document.getElementById("orderNotice").value;
+                        var quantity = document.getElementById("quantityInput").value;
+                        var memberId = document.getElementById("memberId").value;
+                        var itemId = document.getElementById("itemId").value;
+
+                        $.ajax({
+                            type: "POST",
+                            url: "/orderAdmin",
+                            data: {
+                                buyerName: buyerName,
+                                orderNotice: orderNotice,
+                                quantity: quantity,
+                                memberId: memberId,
+                                itemId: itemId,
+                                zipcode: zipcode,
+                                fullAddr: fullAddr,
+                                extraAddr: extraAddr
+                            },
+                            success: function (response) {
+                                console.log("주문 생성 완료")
+                            },
+                            error: function (xhr, status, error) {
+                                console.log("주문 생성 실패")
+                            }
+                        });
+
+                        var msg = '결제가 완료되었습니다.';
+                        alert(msg);
+                        location.href = "/" //결제 성공하면 성공페이지로 나중에 연결시키기
+                    } else {
+                        var msg = '결제에 실패하였습니다.';
+                        msg += '에러내용 : ' + rsp.error_msg;
+                        alert(msg);
+                    }
+                }
+            );
+        }
+    </script>
+    <script>
+        function calculateTotalPrice() {
+            // 정가와 수량 가져오기
+            var pricePerItem = parseInt(document.getElementById("productOnePrice").innerText);
+            var quantity = parseInt(document.getElementById("quantityInput").value);
+
+            // 음수인지 확인
+            if (quantity <= 0) {
+                alert("주문 수량은 최소 1개부터 입니다.");
+                document.getElementById("quantityInput").value = 1;
+            } else {
+                // 총 결제금액 계산
+                var totalPrice = pricePerItem * quantity;
+
+                // 총 결제금액 표시 업데이트
+                document.getElementById("totalPrice").innerText = "" + totalPrice.toLocaleString() + "원";
+            }
+        }
+    </script>
+    <meta charset="UTF-8" />
+    <title></title>
+</head>
+<body>
+<div th:insert="~{fragments/bodyHeader :: bodyHeader}"></div>
+<section class="py-5"></section>
+<section class="py-5">
+    <form action="">
+        <div class="container">
+            <div class="py-5">
+                <h4>주문/결제하기</h4>
+            </div>
+            <div class="row">
+                <div class="col-8">
+                    <div>
+                        <input type="hidden" id="memberId" th:field="${loginMember.id}">
+                        <input type="hidden" id="itemId" th:field="${inventoryId}">
+                        <label class="mb-2">받는 분 성함</label>
+                        <input class="mb-2 form-control" style="width: 40%" type="text" placeholder="성함" id="buyerName">
+
+                    </div>
+
+
+                    <br>
+                    <div>
+                        <input type="button" class="btn btn-warning my-3 btn-sm" value="우편번호 검색" id="btn" name="homeAddress"><br>
+                        <label class="mb-2">우편번호</label>
+                        <input type="text" class="form-control" style="width: 40%" placeholder="22541" id="zipcode">
+                        <label class="mb-2">주소</label>
+                        <input class="mb-2 form-control" style="width: 40%" type="text" placeholder="경기도 성남시 성남대로 11" id="fullAddr">
+                        <label class="mb-2">나머지 주소</label>
+                        <input type="text" class="form-control" style="width: 40%" id="extraAddr">
+                    </div>
+                    <br>
+                    <div>
+                        <label class="mb-2">배송 시 요청사항</label>
+                        <input type="text" class="form-control" id="orderNotice" style="width: 40%" placeholder="문 앞에 놔두세요.">
+                    </div>
+                </div>
+                <div class="col-4 pt-5 border border-1">
+                    <h4>결제 내용</h4>
+                    <div class="row py-5">
+                        <div class="col">
+                            <div class="py-2">
+                                <label class="me-5 text-muted">정가</label>
+                                <span th:text="${productOnePrice} + '원'" id="productOnePrice" class="text-muted fw-bold"></span>
+                            </div>
+                            <div class="py-2">
+                                <label class="me-5 text-muted">배송비</label>
+                                <span class="text-muted fw-bold">0원</span>
+                            </div>
+                            <div class="py-2">
+                                <label class="mb-3 text-muted">수량</label>
+                                <span class="text-muted fw-bold"><input type="number" id="quantityInput" onchange="calculateTotalPrice()" class="form-control" style="width: 20%;" required></span>
+                            </div>
+                            <hr class="py-2">
+                            <div>
+                                <label class="me-5 text-muted">결제금액</label>
+                                <label class="text-muted fw-bold" id="totalPrice"></label>
+                            </div>
+                            <hr class="py-4">
+                            <div>
+                                <button onclick="requestPay()" class="btn btn-secondary rounded-pill" style="width: 100%;">결제하기</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="py-5">
+                <h5>주문할 상품</h5>
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>상품명</th>
+                                    <th>정가</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td th:text="${inventoryId}"></td>
+                                    <td th:text="${productOne}"></td>
+                                    <td th:text="${productOnePrice}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</section>
+
+<!-- 고객지원 -->
+<section class="py-5 bg-service-custom-color text-dark">
+  <div class="container">
+    <div class="row">
+
+      <!-- 공지 및 문의 -->
+      <div class="col-md-4 col-sm-12 text-center"> 
+        <div class="align-items-baseline footer-custom">
+          <h5 class="py-4 footer-custom-column">공지 및 문의</h5>
+          <ul class="list-unstyled">
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">공지사항</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">이벤트</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">FAQ</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">상품문의</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">1:1문의</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">상품 리뷰</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 게시판 -->
+      <div class="col-md-4 text-center d-none d-md-block"> 
+        <div class="align-items-baseline footer-custom">
+          <h5 class="py-4 footer-custom-column">게시판</h5>
+          <ul class="list-unstyled">
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">자유 게시판</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">꿀 Tip 공유</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">MY 애견 자랑</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">나의 문의 내역</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 즐겨찾기 메뉴 -->
+      <div class="col-md-4 text-center d-none d-md-block"> 
+        <div class="align-items-baseline footer-custom">
+          <h5 class="py-4 footer-custom-column">즐겨찾기 메뉴</h5>
+          <ul class="list-unstyled">
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">이벤트</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">찜</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">장바구니</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">주문조회</a></li>
+            <li class="lh-lg"><a href="#" class="text-decoration-none text-dark">마이페이지</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 고객지원 끝 -->
+<div th:insert="~{fragments/footer :: footer}"></div>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    const btn = document.querySelector("#btn")
+    btn.addEventListener("click", () => {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+                // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+
+                let fullAddr = '';
+                let extraAddr = '';
+
+                if (data.userSelectedType === 'R') { //도로명주소인 경우
+                    fullAddr = data.roadAddress;
+                } else {
+                    fullAddr = data.jibunAddress; //지번주소인 경우
+                }
+
+                if (data.userSelectedType === 'R') {
+
+                    if (data.bname !== '') {
+                        extraAddr += data.bname;
+                    }
+
+                    if (data.buildingName !== '') {
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName); //법정동주소가 비어있지 않으면 빌딩명이랑 붙여서 쓰고 아니면 빌딩명만 쓰기
+                    }
+
+                    fullAddr += (extraAddr !== '' ? '(' + extraAddr + ')' : '');
+
+                } else {
+                    document.getElementById("extraAddr").value = '';
+                }
+
+                document.getElementById('zipcode').value = data.zonecode;
+                document.getElementById("fullAddr").value = fullAddr;
+                document.getElementById("extraAddr").focus();
+            }
+        }).open();
+    });
+
+</script>
+</body>
+</html>

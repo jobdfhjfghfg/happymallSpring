@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/header :: header}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HappyMall</title>
+</head>
+<body>
+<div th:insert="~{fragments/bodyHeader :: bodyHeader}"></div>
+
+<section class="mt-md-5 my-3 mb-5">
+  <div class="container">
+    <div class="row justify-content-center align-items-center vh-100">
+      <div class="col-md-6">
+        <div class="card shadow bg-custom-color-login">
+          <div class="card-body p-4">
+            <h5 class="card-title text-center mb-4 fs-3 text-muted">상품 수정</h5>
+            <form th:object="${inventoryForm}" method="post">
+              <div class="pt-3">
+                <div class="mb-3">
+                  <span class="text-danger fw-bold">* </span><label th:for="name" class="form-label fw-bold">상품명</label>
+                  <input type="text" class="form-control" th:field="*{name}" placeholder="상품을 입력하세요" required autofocus>
+                </div>
+                <div class="mb-3">
+                  <span class="text-danger fw-bold">* </span><label th:for="price" class="form-label fw-bold">가격</label>
+                  <input type="number" class="form-control" th:field="*{price}" required>
+                </div>
+                <div class="mb-3">
+                  <span class="text-danger fw-bold">* </span><label th:for="quantity" class="form-label fw-bold">수량</label>
+                  <input type="number" class="form-control" th:field="*{stockQuantity}" required>
+                </div>
+                <button type="submit" class="btn btn-warning">상품 수정</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="py-5"></div>
+<div class="py-5"></div>
+
+<!-- 고객지원 끝 -->
+<div th:insert="~{fragments/footer :: footer}"></div>
+</body>
+</html>
