@@ -2,8 +2,9 @@
 <br></div>
 
 ### <div align="center"> [HappyMall 바로가기](http://43.202.12.236:8081)</div>
-
-## Getting Started / 어떻게 시작하나요?
+<br>
+<div align="center">testId : admin
+                    password : test123</div>
 
 이 곳에서 설치에 관련된 이야기를 해주시면 좋습니다.
 
