@@ -1,4 +1,4 @@
-# HappyMall
+<div align="center"># HappyMall</div>
 
 ![로고](https://github.com/jobdfhjfghfg/happymallSpring/assets/155034269/fd93c436-dc53-4388-89db-0a0ca1832be2)
 
