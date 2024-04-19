@@ -3,8 +3,8 @@
 
 ### <div align="center"> [HappyMall 바로가기](http://43.202.12.236:8081)</div>
 <br>
-<div align="center">testId : `admin` <br>
-                    password : `test123` </div>
+<div align="center">testId : admin <br>
+                    password : test123 </div>
 <br>
 
 <details>
@@ -34,7 +34,16 @@
 |  <img src="https://img.shields.io/badge/html5-E34F26.svg?style=flat-square&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/bootstrap-7952B3?style=flat-square&logo=bootstrap&logoColor=white">   | <img src="https://img.shields.io/badge/springboot-6DB33F?style=flat-square&logo=springboot&logoColor=white"> | <img src="https://img.shields.io/badge/figma-FBCEB1?style=flat-square&logo=figma&logoColor=white"> | <img src="https://img.shields.io/badge/mysql-4479A1?style=flat-square&logo=mysql&logoColor=white"> | <img src="https://img.shields.io/badge/intellijidea-000000?style=flat-square&logo=intellijidea&logoColor=white">  |
 </div>
 
-### 테스트는 이런 식으로 작성하시면 됩니다
+<br>
+<br>
+
+## <span id="schedule">3. 개발 일정</span>
+
+<div align="center">
+  | 개발 일정 | 개발 내용 |
+  | :----: | :----: |
+  | 1.15 ~ 1.17 <br> 1.18 ~ 1.22 <br> | 프로젝트 기획 <br> 와이어 프레임 및 기능 구상 <br> |
+</div>
 
 ```
 예시
