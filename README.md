@@ -68,12 +68,16 @@ if (cart == null) {
 ```
 => cart에 정보가 없으면 새 cart 생성
 
+
+
 ```
 if (cartItem == null) {
             cartItem = CartItem.createCartItem(cart, inventory, count);
             cartInventoryRepository.save(cartItem); }
 ``` 
 => 장바구니에 정보가 없으면 새 장바구니를 만들어줌
+
+
 
 ```
 else {
@@ -87,6 +91,10 @@ else {
         }
 ```
 => 장바구니에 정보가 있으면 update시켜줌
+
+
+
+* 카카오 API 우편번호 검색
 
 ```
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
