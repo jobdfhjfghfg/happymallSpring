@@ -56,3 +56,79 @@
 </div>
 
 
+## <span id="main">5. 메인 코드 </span>
+
+* 장바구니 추가 addCart 코드
+
+```
+if (cart == null) {
+            cart = Cart.createCart(member1);
+            cartRepository.save(cart);
+        }
+```
+=> cart에 정보가 없으면 새 cart 생성
+
+```
+if (cartItem == null) {
+            cartItem = CartItem.createCartItem(cart, inventory, count);
+            cartInventoryRepository.save(cartItem); }
+``` 
+=> 장바구니에 정보가 없으면 새 장바구니를 만들어줌
+
+```
+else {
+            CartItem updateCartItem = cartItem;
+            updateCartItem.setCart(cartItem.getCart());
+            updateCartItem.setInventory(cartItem.getInventory());
+            updateCartItem.setCount(cart.getCount() + count);
+            updateCartItem.setPrice(inventory.getPrice() * (cart.getCount() + count));
+
+            cartInventoryRepository.save(updateCartItem);
+        }
+```
+=> 장바구니에 정보가 있으면 update시켜줌
+
+```
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+  const btn = document.querySelector("#btn")
+  btn.addEventListener("click", () => {
+    new daum.Postcode({
+      oncomplete: function(data) {
+        
+        let fullAddr = '';
+        let extraAddr = '';
+
+        if (data.userSelectedType === 'R') { //도로명주소인 경우
+          fullAddr = data.roadAddress;
+        } else {
+          fullAddr = data.jibunAddress; //지번주소인 경우
+        }
+
+        if (data.userSelectedType === 'R') {
+
+          if (data.bname !== '') {
+            extraAddr += data.bname;
+          }
+
+          if (data.buildingName !== '') {
+            extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName); //법정동주소가 비어있지 않으면 빌딩명이랑 붙여서 쓰고 아니면 빌딩명만 쓰기
+          }
+
+          fullAddr += (extraAddr !== '' ? '(' + extraAddr + ')' : '');
+
+        } else {
+          document.getElementById("extraAddr").value = '';
+        }
+
+        document.getElementById('zipcode').value = data.zonecode;
+        document.getElementById("fullAddr").value = fullAddr;
+        document.getElementById("extraAddr").focus();
+      }
+    }).open();
+  });
+
+</script>
+```
+
+==> 카카오 API를 이용한 우편번호 검색
